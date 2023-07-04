@@ -1,9 +1,13 @@
-require './MathQuestions'
+require './Questions'
 require './Players'
 require './Game'
 
 
-andy = Players.new('andy')
+
+@new_game = Game.new('Jimmy', 'John')
+@new_game.ask_question('Jimmy')
+
+# andy = Players.new('andy')
 
 # class Main 
 # puts 'test'
