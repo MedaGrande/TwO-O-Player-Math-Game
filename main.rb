@@ -3,12 +3,13 @@ require './Players'
 require './Game'
 
 
+# instantiate Players class
+player_1 = Players.new('Jimmy')
+player_2 = Players.new('John')
 
-@new_game = Game.new('Jimmy', 'John')
-@new_game.ask_question('Jimmy')
+# instantiate Game class
+@new_game = Game.new(player_1, player_2)
 
-# andy = Players.new('andy')
+# start game
+@new_game.start_game
 
-# class Main 
-# puts 'test'
-# end

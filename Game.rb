@@ -11,25 +11,56 @@ class Game
   end
 
   def ask_question(chosen_player)
-    # byebug
-    # other_player = chosen_player == @player_1 ? @player_2 : @player_1
+    
+    # instantiate Questions class
     question =Questions.new()
-    prompt = question.addition_question
+
+    # print question to terminal
+    puts question.addition_question(chosen_player.name)
+
+    # get answer from player 
     given_answer = gets.chomp.to_i
-    # puts question
+
+    # get right_answer from correct_answer method
     right_answer = question.correct_answer
-    # puts "given_answer: #{given_answer}"
-    puts "right_answer: #{right_answer}"
+
+    # check answer for correctness & decrement lives if wrong
     if (given_answer == right_answer) 
        puts "Correct answer!" 
     else
        puts "Wrong answer!"
+       chosen_player.lives -= 1
     end
+
+  end
+
+
+  def start_game 
+
+  # set chosen_ player to player_1
+  chosen_player = @player_1 
+
+    # implement turns & show score
+    while @player_1.lives > 0 && @player_2.lives > 0
+      puts "-----NEW TURN-----"
+      ask_question(chosen_player)
+
+      chosen_player = chosen_player == @player_1 ? @player_2 : @player_1
+
+      puts "P1: #{@player_1.lives} / 3 vs P2: #{@player_2.lives} / 3"
+
+    end
+
+    winning_player = @player_1.lives > @player_2.lives ? @player_1 : @player_2
+
+    puts "#{winning_player.name} wins with a score of #{winning_player.lives} / 3"
+
+    puts "GAME OVER!"
+    puts "Goodbye!"
 
   end
 
 end
 
-# @new_game = Game.new('Jimmy', 'John')
-# @new_game.ask_question('Jimmy')
+
 
